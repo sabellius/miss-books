@@ -1,4 +1,4 @@
-export function AppHeader() {
+export default function AppHeader() {
   return (
     <header className="app-header full main-layout">
       <section className="header-container">

@@ -1,6 +1,6 @@
 const { useState, useEffect } = React;
 
-export function Home() {
+export default function Home() {
   return (
     <section className="home">
       <h2>Home Sweet Home</h2>
