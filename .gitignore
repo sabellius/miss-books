@@ -12,7 +12,10 @@
 # assets folders
 !assets/
 !assets/style/
+!assets/style/base/
 !assets/style/cmps/
+!assets/style/pages/
+!assets/style/setup/
 
 # images
 !assets/img/audu.png
@@ -24,6 +27,13 @@
 
 # css
 !assets/style/main.css
+!assets/style/base/base.css
+!assets/style/base/helpers.css
+!assets/style/base/layout.css
+!assets/style/cmps/AppHeader.css
+!assets/style/pages/Home.css
+!assets/style/setup/typography.css
+!assets/style/setup/vars.css
 
 # cmps
 !cmps/AppHeader.jsx
@@ -46,7 +56,3 @@
 !pages/BookIndex.jsx
 !pages/Home.jsx
 
-# services
-!services/async-storage.service.js
-!services/book.service.js
-!services/util.service.js
