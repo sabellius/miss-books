@@ -7,6 +7,7 @@ export const utilService = {
   getDayName,
   getMonthName,
   animateCSS,
+  fixThumbnailUrl,
 };
 
 function makeId(length = 6) {
@@ -112,4 +113,12 @@ function animateCSS(el, animation = 'bounce') {
 
     el.addEventListener('animationend', handleAnimationEnd, { once: true });
   });
+}
+
+// Add "www." to http/https URLs if missing
+function fixThumbnailUrl(url) {
+  if (/^https?:\/\/(?!www\.)/.test(url)) {
+    return url.replace(/^(https?:\/\/)(?!www\.)/, '$1www.');
+  }
+  return url;
 }
