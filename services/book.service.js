@@ -43,7 +43,7 @@ function save(book) {
 //   return { txt: filterBy.txt, minSpeed: filterBy.minSpeed };
 // }
 
-export function _createBooks() {
+export async function _createBooks() {
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
   const books = [];
   for (let i = 0; i < 20; i++) {
@@ -65,7 +65,7 @@ export function _createBooks() {
       },
     };
     books.push(book);
-    save(book);
+    await save(book);
   }
   console.log('books', books);
 }
