@@ -1,6 +1,7 @@
-# ignore everything by default
+# all
 *
 
+# gitignore
 !.gitignore
 
 # entry points
@@ -8,14 +9,25 @@
 !app.js
 !RootCmp.jsx
 
-# assets
+# assets folders
+!assets/
+!assets/style/
+!assets/style/cmps/
+
+# images
 !assets/img/audu.png
 !assets/img/default.png
 !assets/img/fiak.png
 !assets/img/mitsu.png
 !assets/img/react.png
 !assets/img/subali.png
+
+# css
 !assets/style/main.css
+
+# cmps
+!cmps/AppHeader.jsx
+!cmps/BookList.jsx
 
 # lib
 !lib/animate.css
@@ -38,4 +50,3 @@
 !services/async-storage.service.js
 !services/book.service.js
 !services/util.service.js
-
