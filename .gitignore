@@ -9,29 +9,27 @@
 !app.js
 !RootCmp.jsx
 
-# assets folders
+# css
 !assets/
 !assets/style/
 !assets/style/base/
 !assets/style/cmps/
 !assets/style/pages/
 !assets/style/setup/
-
-# css
 !assets/style/main.css
 !assets/style/base/base.css
 !assets/style/base/helpers.css
 !assets/style/base/layout.css
 !assets/style/cmps/AppHeader.css
+!assets/style/cmps/BookList.css
 !assets/style/pages/Home.css
+!assets/style/pages/BookIndex.css
 !assets/style/setup/typography.css
 !assets/style/setup/vars.css
 
-# cmps
-!cmps/AppHeader.jsx
-!cmps/BookList.jsx
 
 # lib
+!lib/
 !lib/animate.css
 !lib/babel-preset.js
 !lib/babel.js
@@ -43,8 +41,13 @@
 !lib/react.development.js
 
 # pages
+!pages/
 !pages/About.jsx
 !pages/BookDetails.jsx
 !pages/BookIndex.jsx
 !pages/Home.jsx
 
+# cmps
+!cmps/
+!cmps/AppHeader.jsx
+!cmps/BookList.jsx
