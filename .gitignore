@@ -1,0 +1,41 @@
+# ignore everything by default
+*
+
+!.gitignore
+
+# entry points
+!index.html
+!app.js
+!RootCmp.jsx
+
+# assets
+!assets/img/audu.png
+!assets/img/default.png
+!assets/img/fiak.png
+!assets/img/mitsu.png
+!assets/img/react.png
+!assets/img/subali.png
+!assets/style/main.css
+
+# lib
+!lib/animate.css
+!lib/babel-preset.js
+!lib/babel.js
+!lib/history.js
+!lib/loadBabelModules.js
+!lib/react-dom.development.js
+!lib/react-router-dom.js
+!lib/react-router.js
+!lib/react.development.js
+
+# pages
+!pages/About.jsx
+!pages/BookDetails.jsx
+!pages/BookIndex.jsx
+!pages/Home.jsx
+
+# services
+!services/async-storage.service.js
+!services/book.service.js
+!services/util.service.js
+
