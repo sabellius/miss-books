@@ -27,7 +27,6 @@
 !assets/style/setup/typography.css
 !assets/style/setup/vars.css
 
-
 # lib
 !lib/
 !lib/animate.css
@@ -51,3 +50,9 @@
 !cmps/
 !cmps/AppHeader.jsx
 !cmps/BookList.jsx
+
+# services
+!services/
+!services/util.service.js
+!services/async-storage.service.js
+!services/book.service.js
