@@ -45,7 +45,10 @@ function save(book) {
 
 export async function _createBooks() {
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
-  const books = [];
+  let books = await storageService.query(BOOK_KEY);
+  if (books.length) return;
+  console.log('Creating books...');
+  books = [];
   for (let i = 0; i < 20; i++) {
     const book = {
       // id: utilService.makeId(),
