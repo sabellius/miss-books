@@ -24,9 +24,14 @@
 !assets/style/cmps/BookList.css
 !assets/style/cmps/BookPreview.css
 !assets/style/pages/Home.css
+!assets/style/pages/BookDetails.css
 !assets/style/pages/BookIndex.css
 !assets/style/setup/typography.css
 !assets/style/setup/vars.css
+
+# images
+!assets/img/
+!assets/img/on-sale-corner-ribbon.png
 
 # lib
 !lib/
