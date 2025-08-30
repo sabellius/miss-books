@@ -1,18 +1,29 @@
 const { useState, useEffect } = React;
-import { query } from '../services/book.service.js';
+import { query, getDefaultFilter } from '../services/book.service.js';
 import BookList from '../cmps/BookList.jsx';
+import BookFilter from '../cmps/BookFilter.jsx';
 
 export default function BookIndex() {
   const [books, setBooks] = useState(null);
+  const [filterBy, setFilterBy] = useState(getDefaultFilter());
 
   useEffect(() => {
     loadBooks();
-  }, []);
+  }, [filterBy]);
 
   function loadBooks() {
-    query().then(books => setBooks(books));
+    query(filterBy).then(books => setBooks(books));
+  }
+
+  function onSetFilterBy(filterBy) {
+    setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }));
   }
 
   if (!books) return <div>Loading...</div>;
-  return <BookList books={books} />;
+  return (
+    <div>
+      <BookFilter onFilterChange={onSetFilterBy} filterBy={filterBy} />
+      <BookList books={books} />
+    </div>
+  );
 }

@@ -6,16 +6,22 @@ _createBooks();
 
 export function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then(books => {
-    // if (filterBy.txt) {
-    //   const regExp = new RegExp(filterBy.txt, 'i');
-    //   books = books.filter(book => regExp.test(book.vendor));
-    // }
+    const filteredBooks = books.filter(book => {
+      const matchesTitle = filterBy.title
+        ? book.title.toLowerCase().includes(filterBy.title.toLowerCase())
+        : true;
+      const matchesMinPrice =
+        filterBy.minPrice !== ''
+          ? book.listPrice.amount >= filterBy.minPrice
+          : true;
+      const matchesMaxPrice =
+        filterBy.maxPrice !== ''
+          ? book.listPrice.amount <= filterBy.maxPrice
+          : true;
+      return matchesTitle && matchesMinPrice && matchesMaxPrice;
+    });
 
-    // if (filterBy.minSpeed) {
-    //   books = books.filter(book => book.maxSpeed >= filterBy.minSpeed);
-    // }
-
-    return books;
+    return filteredBooks;
   });
 }
 
@@ -39,9 +45,15 @@ function save(book) {
 //   return { vendor, maxSpeed };
 // }
 
-// function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
-//   return { txt: filterBy.txt, minSpeed: filterBy.minSpeed };
-// }
+export function getDefaultFilter(
+  filterBy = { title: '', minPrice: '', maxPrice: '' }
+) {
+  return {
+    title: filterBy.title,
+    minPrice: filterBy.minPrice,
+    maxPrice: filterBy.maxPrice,
+  };
+}
 
 export async function _createBooks() {
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
