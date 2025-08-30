@@ -1,8 +1,7 @@
 const { useState, useEffect } = React;
 const { useParams } = ReactRouterDOM;
 
-import { query } from '../services/book.service.js';
-import { utilService } from '../services/util.service.js';
+import { get } from '../services/book.service.js';
 
 export default function BookDetails() {
   const [book, setBook] = useState(null);
@@ -14,8 +13,7 @@ export default function BookDetails() {
 
   async function loadBook() {
     try {
-      const books = await query();
-      const book = books.find(book => book.id === bookId);
+      const book = await get(bookId);
       setBook(book);
     } catch (err) {
       console.log('🚀 ~ BookDetails ~ err:', err);
