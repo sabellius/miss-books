@@ -41,10 +41,6 @@ function save(book) {
   }
 }
 
-// function getEmptybook(vendor = '', maxSpeed = '') {
-//   return { vendor, maxSpeed };
-// }
-
 export function getDefaultFilter(
   filterBy = { title: '', minPrice: '', maxPrice: '' }
 ) {
