@@ -1,11 +1,11 @@
-.book-preview {
+.book-preview a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.book-preview.book-info {
+.book-preview .book-info {
   text-align: center;
   width: 200px;
 }
