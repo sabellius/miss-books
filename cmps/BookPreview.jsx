@@ -7,7 +7,7 @@ export default function BookPreview({ book }) {
       <Link to={`/books/${book.id}`}>
         <img
           className="book-img"
-          src={utilService.fixThumbnailUrl(book.thumbnail)}
+          src={book.thumbnail}
           alt={book.title}
           width={'200px'}
         />

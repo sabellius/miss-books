@@ -53,11 +53,7 @@ export default function BookDetails() {
   return (
     <div className="book-details">
       <div className="book-img">
-        <img
-          width={400}
-          src={utilService.fixThumbnailUrl(book.thumbnail)}
-          alt={book.title}
-        />
+        <img width={400} src={book.thumbnail} alt={book.title} />
         {book.listPrice.isOnSale && (
           <img
             className="on-sale-ribbon"
