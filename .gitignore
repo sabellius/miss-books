@@ -23,6 +23,7 @@
 !assets/style/cmps/AppHeader.css
 !assets/style/cmps/BookList.css
 !assets/style/cmps/BookPreview.css
+!assets/style/cmps/BookFilter.css
 !assets/style/pages/Home.css
 !assets/style/pages/BookDetails.css
 !assets/style/pages/BookIndex.css
@@ -57,6 +58,7 @@
 !cmps/AppHeader.jsx
 !cmps/BookList.jsx
 !cmps/BookPreview.jsx
+!cmps/BookFilter.jsx
 
 # services
 !services/

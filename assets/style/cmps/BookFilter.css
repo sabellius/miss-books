@@ -1,0 +1,24 @@
+.book-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: 20px;
+}
+
+.book-filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-filter-form input {
+  padding: 0.5em;
+}
+
+.book-filter-form .filter {
+  margin: 0 10px;
+}
+
+.book-filter-form .filter label {
+  margin-inline-end: 10px;
+}
