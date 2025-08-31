@@ -4,7 +4,7 @@ import { storageService } from './async-storage.service.js';
 const BOOK_KEY = 'booksDB';
 _createBooks();
 
-export function query(filterBy = {}) {
+export function query(filterBy = getDefaultFilter()) {
   return storageService.query(BOOK_KEY).then(books => {
     const filteredBooks = books.filter(book => {
       const matchesTitle = filterBy.title
@@ -26,7 +26,7 @@ export function query(filterBy = {}) {
 }
 
 export function get(bookId) {
-  return storageService.get(BOOK_KEY, bookId);
+  return storageService.get(BOOK_KEY, bookId).then(_setNextPrevBookId);
 }
 
 export function remove(bookId) {
@@ -51,7 +51,17 @@ export function getDefaultFilter(
   };
 }
 
-export async function _createBooks() {
+async function _setNextPrevBookId(book) {
+  const books = await query();
+  const bookIdx = books.findIndex(currBook => currBook.id === book.id);
+  book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id;
+  book.prevBookId = books[bookIdx - 1]
+    ? books[bookIdx - 1].id
+    : books[books.length - 1].id;
+  return book;
+}
+
+async function _createBooks() {
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion'];
   let books = await storageService.query(BOOK_KEY);
   if (books.length) return;
