@@ -1,5 +1,6 @@
 const { useState, useEffect } = React;
 const { useParams } = ReactRouterDOM;
+const { Link } = ReactRouterDOM;
 
 import LongTxt from '../cmps/LongTxt.jsx';
 import { get } from '../services/book.service.js';
@@ -10,7 +11,7 @@ export default function BookDetails() {
 
   useEffect(() => {
     loadBook();
-  }, []);
+  }, [bookId]);
 
   async function loadBook() {
     try {
@@ -74,6 +75,18 @@ export default function BookDetails() {
           Price: {book.listPrice.amount} {book.listPrice.currencyCode}
         </p>
         <LongTxt txt={book.description} length={120} />
+      </div>
+      <div className="book-navigation">
+        <button>
+          <Link to={`/books/${book.prevBookId}`} className="prev-book">
+            Previous Book
+          </Link>
+        </button>
+        <button>
+          <Link to={`/books/${book.nextBookId}`} className="next-book">
+            Next Book
+          </Link>
+        </button>
       </div>
     </div>
   );
