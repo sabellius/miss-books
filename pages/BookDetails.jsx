@@ -1,6 +1,7 @@
 const { useState, useEffect } = React;
 const { useParams } = ReactRouterDOM;
 
+import LongTxt from '../cmps/LongTxt.jsx';
 import { get } from '../services/book.service.js';
 
 export default function BookDetails() {
@@ -72,7 +73,7 @@ export default function BookDetails() {
         <p className={`book-price ${priceClassName}`}>
           Price: {book.listPrice.amount} {book.listPrice.currencyCode}
         </p>
-        <p>{book.description}</p>
+        <LongTxt txt={book.description} length={120} />
       </div>
     </div>
   );
