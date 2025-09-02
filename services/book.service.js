@@ -10,6 +10,31 @@ export function query(filterBy = getDefaultFilter()) {
       const matchesTitle = filterBy.title
         ? book.title.toLowerCase().includes(filterBy.title.toLowerCase())
         : true;
+      const matchesSubtitle = filterBy.subtitle
+        ? book.subtitle.toLowerCase().includes(filterBy.subtitle.toLowerCase())
+        : true;
+      const matchesAuthor = filterBy.author
+        ? book.authors.some(author =>
+            author.toLowerCase().includes(filterBy.author.toLowerCase())
+          )
+        : true;
+      const matchesCategory = filterBy.category
+        ? book.categories.some(category =>
+            category.toLowerCase().includes(filterBy.category.toLowerCase())
+          )
+        : true;
+      const matchesPublishedYear =
+        filterBy.publishedYear !== ''
+          ? String(book.publishedDate).includes(String(filterBy.publishedYear))
+          : true;
+      const matchesMinPageCount =
+        filterBy.minPageCount !== ''
+          ? book.pageCount >= filterBy.minPageCount
+          : true;
+      const matchesMaxPageCount =
+        filterBy.maxPageCount !== ''
+          ? book.pageCount <= filterBy.maxPageCount
+          : true;
       const matchesMinPrice =
         filterBy.minPrice !== ''
           ? book.listPrice.amount >= filterBy.minPrice
@@ -18,7 +43,28 @@ export function query(filterBy = getDefaultFilter()) {
         filterBy.maxPrice !== ''
           ? book.listPrice.amount <= filterBy.maxPrice
           : true;
-      return matchesTitle && matchesMinPrice && matchesMaxPrice;
+      const matchesCurrency = filterBy.currency
+        ? book.listPrice.currencyCode
+            .toLowerCase()
+            .includes(filterBy.currency.toLowerCase())
+        : true;
+      const matchesOnSale = filterBy.isOnSale
+        ? !!book.listPrice.isOnSale
+        : true;
+
+      return (
+        matchesTitle &&
+        matchesSubtitle &&
+        matchesAuthor &&
+        matchesCategory &&
+        matchesPublishedYear &&
+        matchesMinPageCount &&
+        matchesMaxPageCount &&
+        matchesMinPrice &&
+        matchesMaxPrice &&
+        matchesCurrency &&
+        matchesOnSale
+      );
     });
 
     return filteredBooks;
@@ -42,12 +88,32 @@ function save(book) {
 }
 
 export function getDefaultFilter(
-  filterBy = { title: '', minPrice: '', maxPrice: '' }
+  filterBy = {
+    title: '',
+    subtitle: '',
+    author: '',
+    category: '',
+    publishedYear: '',
+    minPageCount: '',
+    maxPageCount: '',
+    minPrice: '',
+    maxPrice: '',
+    currency: '',
+    isOnSale: false,
+  }
 ) {
   return {
     title: filterBy.title,
+    subtitle: filterBy.subtitle,
+    author: filterBy.author,
+    category: filterBy.category,
+    publishedYear: filterBy.publishedYear,
+    minPageCount: filterBy.minPageCount,
+    maxPageCount: filterBy.maxPageCount,
     minPrice: filterBy.minPrice,
     maxPrice: filterBy.maxPrice,
+    currency: filterBy.currency,
+    isOnSale: filterBy.isOnSale,
   };
 }
 
