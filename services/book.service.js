@@ -79,7 +79,7 @@ export function remove(bookId) {
   return storageService.remove(BOOK_KEY, bookId);
 }
 
-function save(book) {
+export function save(book) {
   if (book.id) {
     return storageService.put(BOOK_KEY, book);
   } else {
@@ -114,6 +114,26 @@ export function getDefaultFilter(
     maxPrice: filterBy.maxPrice,
     currency: filterBy.currency,
     isOnSale: filterBy.isOnSale,
+  };
+}
+
+export function getEmptyBook() {
+  return {
+    id: '',
+    title: '',
+    subtitle: '',
+    authors: [''],
+    publishedDate: '',
+    description: '',
+    pageCount: '',
+    categories: [''],
+    thumbnail: '',
+    language: '',
+    listPrice: {
+      amount: '',
+      currencyCode: '',
+      isOnSale: false,
+    },
   };
 }
 

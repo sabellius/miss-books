@@ -1,4 +1,5 @@
 const { useState } = React;
+const { Link } = ReactRouterDOM;
 
 export default function BookFilter({ onFilterChange }) {
   const [filterBy, setFilterBy] = useState({
@@ -149,6 +150,9 @@ export default function BookFilter({ onFilterChange }) {
         />
       </div>
       <button>Apply Filters</button>
+      <Link to="/books/new">
+        <button>Add a new book</button>
+      </Link>
     </form>
   );
 }
