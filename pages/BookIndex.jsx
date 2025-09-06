@@ -12,8 +12,13 @@ export default function BookIndex() {
     loadBooks();
   }, [filterBy]);
 
-  function loadBooks() {
-    query(filterBy).then(books => setBooks(books));
+  async function loadBooks() {
+    try {
+      const books = await query(filterBy);
+      setBooks(books);
+    } catch (err) {
+      console.error('Failed to load books:', err);
+    }
   }
 
   function onSetFilterBy(filterBy) {
