@@ -1,11 +1,27 @@
 const { useState } = React;
-const { useNavigate } = ReactRouterDOM;
-import { getEmptyBook, save } from '../services/book.service.js';
+const { useNavigate, useParams } = ReactRouterDOM;
+import { getEmptyBook, save, get } from '../services/book.service.js';
 import '../assets/style/cmps/BookForm.css';
 
 export default function BookForm() {
   const [formState, setFormState] = useState(getEmptyBook());
+  const { bookId } = useParams();
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    loadBook(bookId);
+  }, [bookId]);
+
+  async function loadBook(bookId) {
+    if (!bookId) return;
+    try {
+      const book = await get(bookId);
+      setFormState(book);
+    } catch (error) {
+      console.log('🚀 ~ loadBook ~ error:', error);
+      navigate('/books');
+    }
+  }
 
   function handleChange(ev) {
     const { name, value, type, checked, dataset } = ev.target;
