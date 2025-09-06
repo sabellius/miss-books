@@ -1,7 +1,6 @@
 const { Link } = ReactRouterDOM;
-import { remove } from '../services/book.service.js';
 
-export default function BookPreview({ book }) {
+export default function BookPreview({ book, onRemoveBook }) {
   return (
     <div className="book-preview">
       <img
@@ -21,7 +20,7 @@ export default function BookPreview({ book }) {
         <Link to={`/books/${book.id}/edit`}>
           <button>Edit</button>
         </Link>
-        <span className="delete-action" onClick={() => remove(book.id)}>
+        <span className="delete-action" onClick={() => onRemoveBook(book.id)}>
           <button>Delete</button>
         </span>
       </div>
