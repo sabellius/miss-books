@@ -1,7 +1,7 @@
 const { useState } = React;
 const { useNavigate, useParams } = ReactRouterDOM;
 import { getEmptyBook, save, get } from '../services/book.service.js';
-import '../assets/style/cmps/BookForm.css';
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
 
 export default function BookForm() {
   const [formState, setFormState] = useState(getEmptyBook());
@@ -74,8 +74,10 @@ export default function BookForm() {
     ev.preventDefault();
     try {
       const book = await save(formState);
+      showSuccessMsg('Book saved successfully!');
       navigate(`/books/${book.id}`);
     } catch (error) {
+      showErrorMsg('Cannot save book!');
       console.log('🚀 ~ handleSubmit ~ error:', error);
     }
   }

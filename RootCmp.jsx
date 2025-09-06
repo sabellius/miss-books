@@ -4,6 +4,7 @@ import BookDetails from './pages/BookDetails.jsx';
 import BookIndex from './pages/BookIndex.jsx';
 import Home from './pages/Home.jsx';
 import BookForm from './cmps/BookForm.jsx';
+import UserMsg from './cmps/UserMsg.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
 const { Routes, Route, Navigate } = ReactRouterDOM;
@@ -25,6 +26,7 @@ export function RootCmp() {
             <Route path="/books/:bookId/edit" element={<BookForm />} />
           </Routes>
         </main>
+        <UserMsg />
       </section>
     </Router>
   );
