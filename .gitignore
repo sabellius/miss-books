@@ -69,3 +69,4 @@
 !services/util.service.js
 !services/async-storage.service.js
 !services/book.service.js
+!services/event-bus.service.js
