@@ -87,6 +87,19 @@ export function save(book) {
   }
 }
 
+export async function addReview(bookId, review) {
+  try {
+    const book = await get(bookId);
+    if (!book.reviews) book.reviews = [];
+    review.id = utilService.makeId();
+    book.reviews.push(review);
+    await save(book);
+    return review;
+  } catch (error) {
+    console.error('Error adding review:', error);
+  }
+}
+
 export function getDefaultFilter(
   filterBy = {
     title: '',

@@ -1,0 +1,48 @@
+.review-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto 0 auto;
+  padding: 0 0 3rem 0;
+  gap: 1.2rem;
+}
+
+.review {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.review h3 {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.review p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.review-list .review:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .review-list {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  .review {
+    padding: 1rem 0.5rem;
+  }
+}

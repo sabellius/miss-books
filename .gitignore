@@ -27,6 +27,8 @@
 !assets/style/cmps/LongTxt.css
 !assets/style/cmps/BookForm.css
 !assets/style/cmps/UserMsg.css
+!assets/style/cmps/AddReview.css
+!assets/style/cmps/ReviewList.css
 !assets/style/pages/Home.css
 !assets/style/pages/BookDetails.css
 !assets/style/pages/BookIndex.css

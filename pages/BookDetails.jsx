@@ -2,11 +2,14 @@ const { useState, useEffect } = React;
 const { useParams } = ReactRouterDOM;
 const { Link } = ReactRouterDOM;
 
+import AddReview from '../cmps/AddReview.jsx';
+import ReviewList from '../cmps/ReviewList.jsx';
 import LongTxt from '../cmps/LongTxt.jsx';
 import { get } from '../services/book.service.js';
 
 export default function BookDetails() {
   const [book, setBook] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const { bookId } = useParams();
 
   useEffect(() => {
@@ -17,6 +20,7 @@ export default function BookDetails() {
     try {
       const book = await get(bookId);
       setBook(book);
+      setReviews(book.reviews || []);
     } catch (err) {
       console.log('🚀 ~ BookDetails ~ err:', err);
     }
@@ -51,43 +55,47 @@ export default function BookDetails() {
   const priceClassName = priceClass(book.listPrice.amount);
 
   return (
-    <div className="book-details">
-      <div className="book-img">
-        <img width={400} src={book.thumbnail} alt={book.title} />
-        {book.listPrice.isOnSale && (
-          <img
-            className="on-sale-ribbon"
-            width={150}
-            src="assets/img/on-sale-corner-ribbon.png"
-            alt="on sale banner"
-          />
-        )}
+    <div>
+      <div className="book-details">
+        <div className="book-img">
+          <img width={400} src={book.thumbnail} alt={book.title} />
+          {book.listPrice.isOnSale && (
+            <img
+              className="on-sale-ribbon"
+              width={150}
+              src="assets/img/on-sale-corner-ribbon.png"
+              alt="on sale banner"
+            />
+          )}
+        </div>
+        <div className="book-info">
+          <h1>{book.title}</h1>
+          <h2>{book.subtitle}</h2>
+          <p>Authors: {book.authors.join(', ')}</p>
+          <p>Published Date: {book.publishedDate}</p>
+          <p>Categories: {book.categories.join(', ')}</p>
+          {readingTypeText && <p>Reading Type: {readingTypeText}</p>}
+          {readingAgeText && <p>Book Age: {readingAgeText}</p>}
+          <p className={`book-price ${priceClassName}`}>
+            Price: {book.listPrice.amount} {book.listPrice.currencyCode}
+          </p>
+          <LongTxt txt={book.description} length={120} />
+        </div>
+        <div className="book-navigation">
+          <button>
+            <Link to={`/books/${book.prevBookId}`} className="prev-book">
+              Previous Book
+            </Link>
+          </button>
+          <button>
+            <Link to={`/books/${book.nextBookId}`} className="next-book">
+              Next Book
+            </Link>
+          </button>
+        </div>
       </div>
-      <div className="book-info">
-        <h1>{book.title}</h1>
-        <h2>{book.subtitle}</h2>
-        <p>Authors: {book.authors.join(', ')}</p>
-        <p>Published Date: {book.publishedDate}</p>
-        <p>Categories: {book.categories.join(', ')}</p>
-        {readingTypeText && <p>Reading Type: {readingTypeText}</p>}
-        {readingAgeText && <p>Book Age: {readingAgeText}</p>}
-        <p className={`book-price ${priceClassName}`}>
-          Price: {book.listPrice.amount} {book.listPrice.currencyCode}
-        </p>
-        <LongTxt txt={book.description} length={120} />
-      </div>
-      <div className="book-navigation">
-        <button>
-          <Link to={`/books/${book.prevBookId}`} className="prev-book">
-            Previous Book
-          </Link>
-        </button>
-        <button>
-          <Link to={`/books/${book.nextBookId}`} className="next-book">
-            Next Book
-          </Link>
-        </button>
-      </div>
+      <AddReview bookId={book.id} setReviews={setReviews} />
+      <ReviewList reviews={reviews} />
     </div>
   );
 }
