@@ -67,6 +67,8 @@
 !cmps/LongTxt.jsx
 !cmps/BookForm.jsx
 !cmps/UserMsg.jsx
+!cmps/AddReview.jsx
+!cmps/ReviewList.jsx
 
 # services
 !services/
