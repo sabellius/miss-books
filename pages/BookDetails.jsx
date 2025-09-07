@@ -5,7 +5,7 @@ const { Link } = ReactRouterDOM;
 import AddReview from '../cmps/AddReview.jsx';
 import ReviewList from '../cmps/ReviewList.jsx';
 import LongTxt from '../cmps/LongTxt.jsx';
-import { get } from '../services/book.service.js';
+import { get, removeReview } from '../services/book.service.js';
 
 export default function BookDetails() {
   const [book, setBook] = useState(null);
@@ -46,6 +46,15 @@ export default function BookDetails() {
     if (amount > 150) return 'red';
     if (amount < 20) return 'green';
     return '';
+  }
+
+  async function handleDeleteReview(reviewId) {
+    try {
+      const updatedReviews = await removeReview(book.id, reviewId);
+      setReviews(updatedReviews);
+    } catch (error) {
+      console.error('Error deleting review:', error);
+    }
   }
 
   if (!book) return <div>Loading...</div>;
@@ -95,7 +104,7 @@ export default function BookDetails() {
         </div>
       </div>
       <AddReview bookId={book.id} setReviews={setReviews} />
-      <ReviewList reviews={reviews} />
+      <ReviewList reviews={reviews} onDelete={handleDeleteReview} />
     </div>
   );
 }

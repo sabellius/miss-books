@@ -100,6 +100,18 @@ export async function addReview(bookId, review) {
   }
 }
 
+export async function removeReview(bookId, reviewId) {
+  try {
+    const book = await get(bookId);
+    if (!book.reviews) return;
+    book.reviews = book.reviews.filter(review => review.id !== reviewId);
+    await save(book);
+    return book.reviews;
+  } catch (error) {
+    console.error('Error removing review:', error);
+  }
+}
+
 export function getDefaultFilter(
   filterBy = {
     title: '',
